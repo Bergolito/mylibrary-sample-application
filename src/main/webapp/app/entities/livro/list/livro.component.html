@@ -1,0 +1,213 @@
+<div>
+  <h2 id="page-heading" data-cy="LivroHeading">
+    <span jhiTranslate="mylibraryApp.livro.home.title">Livros</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="mylibraryApp.livro.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-livro"
+        [routerLink]="['/livro/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="mylibraryApp.livro.home.createLabel">Criar novo Livro</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (livros?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="mylibraryApp.livro.home.notFound">Nenhum Livro encontrado</span>
+    </div>
+  }
+
+  @if (livros && livros.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="titulo">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.titulo">Titulo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="subtitulo">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.subtitulo">Subtitulo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ano">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.ano">Ano</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numPags">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.numPags">Num Pags</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="isbn">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.isbn">Isbn</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+
+<!--             
+            <th scope="col" jhiSortBy="sinopse">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.sinopse">Sinopse</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+ -->            
+            <th scope="col" jhiSortBy="formato">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.formato">Formato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+
+<!--             
+            <th scope="col" jhiSortBy="capa">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.capa">Capa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+ -->
+
+            <th scope="col" jhiSortBy="autor.id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.autor">Autor</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="editora.id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.editora">Editora</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idioma.id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.idioma">Idioma</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+
+<!--             <th scope="col" jhiSortBy="usuarios.id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.livro.usuarios">Usuarios</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+ -->            
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (livro of livros; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/livro', livro.id, 'view']">{{ livro.id }}</a>
+              </td>
+              <td>{{ livro.titulo }}</td>
+              <td>{{ livro.subtitulo }}</td>
+              <td>{{ livro.ano }}</td>
+              <td>{{ livro.numPags }}</td>
+              <td>{{ livro.isbn }}</td>
+              <!-- <td>{{ livro.sinopse }}</td> -->
+              <td [jhiTranslate]="'mylibraryApp.FormatoLivro.' + (livro.formato ?? 'null')">
+                {{ { null: '', PAPEL: 'PAPEL', DIGITAL: 'DIGITAL' }[livro.formato ?? 'null'] }}
+              </td>
+<!--               
+              <td>
+                @if (livro.capa) {
+                  <a (click)="openFile(livro.capa, livro.capaContentType)" jhiTranslate="entity.action.open">Abrir</a>
+                  <span>{{ livro.capaContentType }}, {{ byteSize(livro.capa) }}</span>
+                }
+              </td>
+ -->              <td>
+                @if (livro.autor) {
+                  <div>
+                    <a [routerLink]="['/autor', livro.autor.id, 'view']">{{ livro.autor.id }}-{{ livro.autor.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (livro.editora) {
+                  <div>
+                    <a [routerLink]="['/editora', livro.editora.id, 'view']">{{ livro.editora.id }}-{{ livro.editora.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (livro.idioma) {
+                  <div>
+                    <a [routerLink]="['/idioma', livro.idioma.id, 'view']">{{ livro.idioma.id }}-{{ livro.idioma.nome }}</a>
+                  </div>
+                }
+              </td>
+<!--               
+              <td>
+                @for (usuarios of livro.usuarios; track $index; let last = $last) {
+                  <span>
+                    <a class="form-control-static" [routerLink]="['/usuario', usuarios.id, 'view']">{{ usuarios.id }}</a
+                    >{{ last ? '' : ', ' }}
+                  </span>
+                }
+              </td>
+ -->              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/livro', livro.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/livro', livro.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(livro)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

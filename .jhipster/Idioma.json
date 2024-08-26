@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20240820143003"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Idioma",
+  "relationships": [],
+  "searchEngine": "no"
+}

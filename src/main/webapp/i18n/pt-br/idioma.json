@@ -1,0 +1,25 @@
+{
+  "mylibraryApp": {
+    "idioma": {
+      "home": {
+        "title": "Idiomas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Idioma",
+        "createOrEditLabel": "Criar ou editar Idioma",
+        "notFound": "Nenhum Idioma encontrado"
+      },
+      "created": "Um novo Idioma foi criado com o identificador {{ param }}",
+      "updated": "Um Idioma foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Idioma foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Idioma {{ id }}?"
+      },
+      "detail": {
+        "title": "Idioma"
+      },
+      "id": "Id",
+      "nome": "Nome",
+      "descricao": "Descricao"
+    }
+  }
+}

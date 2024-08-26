@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Livro.
+    -->
+    <changeSet id="20240820143004-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="autor_id"
+                                 baseTableName="livro"
+                                 constraintName="fk_livro__autor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="autor"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="editora_id"
+                                 baseTableName="livro"
+                                 constraintName="fk_livro__editora_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="editora"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="idioma_id"
+                                 baseTableName="livro"
+                                 constraintName="fk_livro__idioma_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="idioma"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="livro_id"
+                                 baseTableName="rel_livro__usuarios"
+                                 constraintName="fk_rel_livro__usuarios__livro_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="livro"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="usuarios_id"
+                                 baseTableName="rel_livro__usuarios"
+                                 constraintName="fk_rel_livro__usuarios__usuarios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"
+                                 />
+    </changeSet>
+</databaseChangeLog>

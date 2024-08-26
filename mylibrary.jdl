@@ -1,0 +1,67 @@
+entity Autor {
+    id Long
+    nome String
+}
+
+entity Editora {
+    id Long
+    nome String
+}
+
+enum FormatoLivro {
+    PAPEL, DIGITAL
+}
+
+entity Usuario {
+    id Long
+    nome String
+    email String
+    senha String
+}
+
+entity Idioma {
+    id Long
+    nome String
+    descricao String
+}
+
+entity Livro {
+    id Long
+    titulo String
+    subtitulo String
+    ano Integer
+    numPags Integer
+    isbn String
+    sinopse String
+    formato FormatoLivro
+    capa Blob
+}
+
+relationship ManyToOne {
+    Livro{autor} to Autor
+}
+
+relationship ManyToOne {
+    Livro{editora} to Editora
+}
+
+relationship ManyToOne {
+    Livro{idioma} to Idioma
+}
+
+relationship ManyToMany {
+    Livro{usuarios} to Usuario{livros}
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

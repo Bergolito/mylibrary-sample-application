@@ -1,0 +1,75 @@
+{
+  "annotations": {
+    "changelogDate": "20240820143004"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subtitulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ano",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numPags",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isbn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sinopse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "formato",
+      "fieldType": "FormatoLivro",
+      "fieldValues": "PAPEL,DIGITAL"
+    },
+    {
+      "fieldName": "capa",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "name": "Livro",
+  "relationships": [
+    {
+      "otherEntityName": "autor",
+      "relationshipName": "autor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "editora",
+      "relationshipName": "editora",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "idioma",
+      "relationshipName": "idioma",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "livros",
+      "relationshipName": "usuarios",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

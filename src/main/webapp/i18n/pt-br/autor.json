@@ -1,0 +1,24 @@
+{
+  "mylibraryApp": {
+    "autor": {
+      "home": {
+        "title": "Autors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Autor",
+        "createOrEditLabel": "Criar ou editar Autor",
+        "notFound": "Nenhum Autor encontrado"
+      },
+      "created": "Um novo Autor foi criado com o identificador {{ param }}",
+      "updated": "Um Autor foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Autor foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Autor {{ id }}?"
+      },
+      "detail": {
+        "title": "Autor"
+      },
+      "id": "Id",
+      "nome": "Nome"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (livro()) {
+      <div>
+        <h2 data-cy="livroDetailsHeading"><span jhiTranslate="mylibraryApp.livro.detail.title">Livro</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="mylibraryApp.livro.id">Id</span></dt>
+          <dd>
+            <span>{{ livro()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.titulo">Titulo</span></dt>
+          <dd>
+            <span>{{ livro()!.titulo }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.subtitulo">Subtitulo</span></dt>
+          <dd>
+            <span>{{ livro()!.subtitulo }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.ano">Ano</span></dt>
+          <dd>
+            <span>{{ livro()!.ano }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.numPags">Num Pags</span></dt>
+          <dd>
+            <span>{{ livro()!.numPags }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.isbn">Isbn</span></dt>
+          <dd>
+            <span>{{ livro()!.isbn }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.sinopse">Sinopse</span></dt>
+          <dd>
+            <span>{{ livro()!.sinopse }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.formato">Formato</span></dt>
+          <dd>
+            <span [jhiTranslate]="'mylibraryApp.FormatoLivro.' + (livro()!.formato ?? 'null')">{{
+              { null: '', PAPEL: 'PAPEL', DIGITAL: 'DIGITAL' }[livro()!.formato ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.capa">Capa</span></dt>
+          <dd>
+            @if (livro()!.capa) {
+              <div>
+                <a (click)="openFile(livro()!.capa ?? '', livro()!.capaContentType)" jhiTranslate="entity.action.open">Abrir</a>
+                {{ livro()!.capaContentType }}, {{ byteSize(livro()!.capa ?? '') }}
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.autor">Autor</span></dt>
+          <dd>
+            @if (livro()!.autor) {
+              <div>
+                <a [routerLink]="['/autor', livro()!.autor?.id, 'view']">{{ livro()!.autor?.id }}-{{ livro()!.autor?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.editora">Editora</span></dt>
+          <dd>
+            @if (livro()!.editora) {
+              <div>
+                <a [routerLink]="['/editora', livro()!.editora?.id, 'view']">{{ livro()!.editora?.id }}-{{ livro()!.editora?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.idioma">Idioma</span></dt>
+          <dd>
+            @if (livro()!.idioma) {
+              <div>
+                <a [routerLink]="['/idioma', livro()!.idioma?.id, 'view']">{{ livro()!.idioma?.id }}-{{ livro()!.idioma?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="mylibraryApp.livro.usuarios">Usuarios</span></dt>
+          <dd>
+            @for (usuarios of livro()!.usuarios; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/usuario', usuarios.id, 'view']">{{ usuarios?.id }}-{{ usuarios?.nome }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/livro', livro()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "mylibraryApp": {
+    "editora": {
+      "home": {
+        "title": "Editoras",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Editora",
+        "createOrEditLabel": "Criar ou editar Editora",
+        "notFound": "Nenhum Editora encontrado"
+      },
+      "created": "Um novo Editora foi criado com o identificador {{ param }}",
+      "updated": "Um Editora foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Editora foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Editora {{ id }}?"
+      },
+      "detail": {
+        "title": "Editora"
+      },
+      "id": "Id",
+      "nome": "Nome"
+    }
+  }
+}

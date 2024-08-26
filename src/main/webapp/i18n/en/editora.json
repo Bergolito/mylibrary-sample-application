@@ -1,0 +1,24 @@
+{
+  "mylibraryApp": {
+    "editora": {
+      "home": {
+        "title": "Editoras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Editora",
+        "createOrEditLabel": "Create or edit a Editora",
+        "notFound": "No Editoras found"
+      },
+      "created": "A new Editora is created with identifier {{ param }}",
+      "updated": "A Editora is updated with identifier {{ param }}",
+      "deleted": "A Editora is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Editora {{ id }}?"
+      },
+      "detail": {
+        "title": "Editora"
+      },
+      "id": "Id",
+      "nome": "Nome"
+    }
+  }
+}

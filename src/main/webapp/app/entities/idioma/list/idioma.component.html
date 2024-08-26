@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="IdiomaHeading">
+    <span jhiTranslate="mylibraryApp.idioma.home.title">Idiomas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="mylibraryApp.idioma.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-idioma"
+        [routerLink]="['/idioma/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="mylibraryApp.idioma.home.createLabel">Criar novo Idioma</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (idiomas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="mylibraryApp.idioma.home.notFound">Nenhum Idioma encontrado</span>
+    </div>
+  }
+
+  @if (idiomas && idiomas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.idioma.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.idioma.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="mylibraryApp.idioma.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (idioma of idiomas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/idioma', idioma.id, 'view']">{{ idioma.id }}</a>
+              </td>
+              <td>{{ idioma.nome }}</td>
+              <td>{{ idioma.descricao }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/idioma', idioma.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/idioma', idioma.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(idioma)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

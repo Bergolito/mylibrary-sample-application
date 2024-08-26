@@ -1,0 +1,19 @@
+{
+  "annotations": {
+    "changelogDate": "20240820143001"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Editora",
+  "relationships": [],
+  "searchEngine": "no"
+}

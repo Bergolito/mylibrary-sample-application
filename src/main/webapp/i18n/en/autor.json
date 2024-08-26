@@ -1,0 +1,24 @@
+{
+  "mylibraryApp": {
+    "autor": {
+      "home": {
+        "title": "Autors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Autor",
+        "createOrEditLabel": "Create or edit a Autor",
+        "notFound": "No Autors found"
+      },
+      "created": "A new Autor is created with identifier {{ param }}",
+      "updated": "A Autor is updated with identifier {{ param }}",
+      "deleted": "A Autor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Autor {{ id }}?"
+      },
+      "detail": {
+        "title": "Autor"
+      },
+      "id": "Id",
+      "nome": "Nome"
+    }
+  }
+}

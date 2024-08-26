@@ -1,0 +1,170 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-livro-heading" data-cy="LivroCreateUpdateHeading" jhiTranslate="mylibraryApp.livro.home.createOrEditLabel">
+        Criar ou editar Livro
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="mylibraryApp.livro.id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_titulo" jhiTranslate="mylibraryApp.livro.titulo">Titulo</label>
+          <input type="text" class="form-control" name="titulo" id="field_titulo" data-cy="titulo" formControlName="titulo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_subtitulo" jhiTranslate="mylibraryApp.livro.subtitulo">Subtitulo</label>
+          <input type="text" class="form-control" name="subtitulo" id="field_subtitulo" data-cy="subtitulo" formControlName="subtitulo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ano" jhiTranslate="mylibraryApp.livro.ano">Ano</label>
+          <input type="number" class="form-control" name="ano" id="field_ano" data-cy="ano" formControlName="ano" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numPags" jhiTranslate="mylibraryApp.livro.numPags">Num Pags</label>
+          <input type="number" class="form-control" name="numPags" id="field_numPags" data-cy="numPags" formControlName="numPags" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isbn" jhiTranslate="mylibraryApp.livro.isbn">Isbn</label>
+          <input type="text" class="form-control" name="isbn" id="field_isbn" data-cy="isbn" formControlName="isbn" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sinopse" jhiTranslate="mylibraryApp.livro.sinopse">Sinopse</label>
+          <textarea class="form-control" name="sinopse" id="field_sinopse" data-cy="sinopse" formControlName="sinopse" ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_formato" jhiTranslate="mylibraryApp.livro.formato">Formato</label>
+          <select class="form-control" name="formato" formControlName="formato" id="field_formato" data-cy="formato">
+            <option [ngValue]="null">{{ 'mylibraryApp.FormatoLivro.null' | translate }}</option>
+            @for (formatoLivro of formatoLivroValues; track $index) {
+              <option [value]="formatoLivro">{{ 'mylibraryApp.FormatoLivro.' + formatoLivro | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_capa" jhiTranslate="mylibraryApp.livro.capa">Capa</label>
+          <div>
+            @if (editForm.get('capa')!.value) {
+              <div class="form-text text-danger clearfix">
+                <a
+                  class="pull-start"
+                  (click)="openFile(editForm.get('capa')!.value!, editForm.get('capaContentType')!.value!)"
+                  jhiTranslate="entity.action.open"
+                  >Abrir</a
+                ><br />
+                <span class="pull-start">{{ editForm.get('capaContentType')!.value }}, {{ byteSize(editForm.get('capa')!.value!) }}</span>
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ capa: undefined, capaContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input
+              type="file"
+              id="file_capa"
+              data-cy="capa"
+              (change)="setFileData($event, 'capa', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="capa" id="field_capa" data-cy="capa" formControlName="capa" />
+          <input type="hidden" class="form-control" name="capaContentType" id="field_capaContentType" formControlName="capaContentType" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autor" jhiTranslate="mylibraryApp.livro.autor">Autor</label>
+          <select class="form-control" id="field_autor" data-cy="autor" name="autor" formControlName="autor" [compareWith]="compareAutor">
+            <option [ngValue]="null"></option>
+            @for (autorOption of autorsSharedCollection; track $index) {
+              <option [ngValue]="autorOption">{{ autorOption.id }}-{{ autorOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_editora" jhiTranslate="mylibraryApp.livro.editora">Editora</label>
+          <select
+            class="form-control"
+            id="field_editora"
+            data-cy="editora"
+            name="editora"
+            formControlName="editora"
+            [compareWith]="compareEditora"
+          >
+            <option [ngValue]="null"></option>
+            @for (editoraOption of editorasSharedCollection; track $index) {
+              <option [ngValue]="editoraOption">{{ editoraOption.id }}-{{ editoraOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_idioma" jhiTranslate="mylibraryApp.livro.idioma">Idioma</label>
+          <select
+            class="form-control"
+            id="field_idioma"
+            data-cy="idioma"
+            name="idioma"
+            formControlName="idioma"
+            [compareWith]="compareIdioma"
+          >
+            <option [ngValue]="null"></option>
+            @for (idiomaOption of idiomasSharedCollection; track $index) {
+              <option [ngValue]="idiomaOption">{{ idiomaOption.id }}-{{ idiomaOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_usuarios" jhiTranslate="mylibraryApp.livro.usuarios">Usuarios</label>
+          <select
+            class="form-control"
+            id="field_usuarios"
+            data-cy="usuarios"
+            multiple
+            name="usuarios"
+            formControlName="usuarios"
+            [compareWith]="compareUsuario"
+          >
+            @for (usuarioOption of usuariosSharedCollection; track $index) {
+              <option [ngValue]="usuarioOption">{{ usuarioOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
