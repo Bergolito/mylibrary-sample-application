@@ -1,11 +1,11 @@
-id;titulo;subtitulo;ano;num_pags;isbn;sinopse;formato;capa;capa_content_type
-1;Livro 01;about fluid;5903;30400;muted weasel inasmuch;side grimy between;PAPEL;../fake-data/blob/hipster.png;image/png
-2;Livro 02;substantial jaywalk jubilantly;27782;25983;during;generously recur huzzah;PAPEL;../fake-data/blob/hipster.png;image/png
-3;Livro 03;which incidentally reiterate;3581;31716;obedient understanding gee;aha;PAPEL;../fake-data/blob/hipster.png;image/png
-4;Livro 04;dramatic;15828;3591;after abandoned on;parallel low blah;PAPEL;../fake-data/blob/hipster.png;image/png
-5;Livro 05;anti upward familiarity;16315;5913;kosher minus;when unless sternly;PAPEL;../fake-data/blob/hipster.png;image/png
-6;Livro 06;until;10705;15245;distant minus;ack;PAPEL;../fake-data/blob/hipster.png;image/png
-7;Livro 07;profuse ferret consequently;15606;823;positively;nurse once;DIGITAL;../fake-data/blob/hipster.png;image/png
-8;Livro 08;unnaturally mmm careen;14513;9694;overdue however;yippee zowie for;DIGITAL;../fake-data/blob/hipster.png;image/png
-9;Livro 09;walk irresponsible round;10890;24656;polish ouch;boohoo;DIGITAL;../fake-data/blob/hipster.png;image/png
-10;Livro 10;although;27829;28408;exercise until;hem;PAPEL;../fake-data/blob/hipster.png;image/png
+id;titulo;subtitulo;ano;num_pags;isbn;formato;autor;editora;idioma
+1;Livro 1;Livro 1 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+2;Livro 2;Livro 2 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+3;Livro 3;Livro 3 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+4;Livro 4;Livro 4 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+5;Livro 5;Livro 5 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+6;Livro 6;Livro 6 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+7;Livro 7;Livro 7 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+8;Livro 8;Livro 8 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+9;Livro 9;Livro 9 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
+10;Livro 10;Livro 10 - sub 1;2022;154;873294723984723;PAPEL;1-Jorge Linhares;1-Editora 01;1-Portugues
